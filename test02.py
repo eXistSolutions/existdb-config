@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import datetime
 import getopt
 import os
@@ -18,8 +21,8 @@ def getOpts():
 		opts2[opt[0]] = opt[1]
 
 	if "-h" in opts2.keys():
-		print("usage: test02.py [-h | -s <sourcePath> -t <targetPath>]")
-		print("e.g. : test02.py -s ./v5.1.1/ -t ../exist-distribution-5.1.1/")
+		print("usage: ./test02.py [-h | -s <sourcePath> -t <targetPath>]")
+		print("e.g. : ./test02.py -s ./v5.1.1/ -t ../exist-distribution-5.1.1/")
 		return(None)
 
 	count = 0
@@ -42,7 +45,7 @@ def checkFilePermissions(replaceFileNames, opts2):
 	for file in replaceFileNames:
 		dstPathFileName = os.path.join(opts2["-t"], file)
 		srcPathFileName = os.path.join(opts2["-s"], file)
-		tmpPathFileName = "".join([dstPathFileName, "_exsol_temp"])
+		tmpPathFileName = "".join([dstPathFileName, "_test02_temp"])
 		if (os.access(srcPathFileName, os.F_OK|os.R_OK), os.access(os.path.dirname(tmpPathFileName), os.F_OK|os.W_OK), os.access(dstPathFileName, os.F_OK|os.W_OK)) != (True, True, True):
 			raise Exception("permission error")
 
@@ -65,7 +68,7 @@ def switchToNewFiles(replaceFileNames, opts2):
 	for file in replaceFileNames:
 		dstPathFileName = os.path.join(opts2["-t"], file)
 		srcPathFileName = os.path.join(opts2["-s"], file)
-		tmpPathFileName = "".join([dstPathFileName, "_exsol_temp"])
+		tmpPathFileName = "".join([dstPathFileName, "_test02_temp"])
 		shutil.move(tmpPathFileName, dstPathFileName)
 
 if __name__=="__main__":
