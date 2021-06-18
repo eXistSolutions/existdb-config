@@ -34,9 +34,9 @@ jetty-requestlog.xml
 
 
 ### SSL and HTTPS
-jetty-ssl.xml
-jetty-ssl-context.xml
-jetty-https.xml
+#jetty-ssl.xml
+#jetty-ssl-context.xml
+#jetty-https.xml
 
 
 ### Webapp deployment
