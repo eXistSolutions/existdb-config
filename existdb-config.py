@@ -21,8 +21,8 @@ def getOpts():
 		opts2[opt[0]] = opt[1]
 
 	if "-h" in opts2.keys():
-		print("usage: ./test02.py [-h | -s <sourcePath> -t <targetPath>]")
-		print("e.g. : ./test02.py -s ./v5.1.1/ -t ../exist-distribution-5.1.1/")
+		print("usage: ./existdb-config.py [-h | -s <sourcePath> -t <targetPath>]")
+		print("e.g. : ./existdb-config.py -s ./v5.1.1/ -t ../exist-distribution-5.1.1/")
 		return(None)
 
 	count = 0
@@ -45,12 +45,12 @@ def checkFilePermissions(replaceFileNames, opts2):
 	for file in replaceFileNames:
 		dstPathFileName = os.path.join(opts2["-t"], file)
 		srcPathFileName = os.path.join(opts2["-s"], file)
-		tmpPathFileName = "".join([dstPathFileName, "_test02_temp"])
+		tmpPathFileName = "".join([dstPathFileName, "_existdb-config_temp"])
 		if (os.access(srcPathFileName, os.F_OK|os.R_OK), os.access(os.path.dirname(tmpPathFileName), os.F_OK|os.W_OK), os.access(dstPathFileName, os.F_OK|os.W_OK)) != (True, True, True):
 			raise Exception("permission error")
 
 def createBackup(replaceFileNames, opts2):
-	tarFileName = os.path.join(opts2["-t"], "test02_%s.tar" % (datetime.datetime.utcnow().replace(microsecond=0).isoformat().replace(":", "")))
+	tarFileName = os.path.join(opts2["-t"], "existdb-config_%s.tar" % (datetime.datetime.utcnow().replace(microsecond=0).isoformat().replace(":", "")))
 	if os.path.isfile(tarFileName):
 		raise Exception("backup tar already exists")
 	with tarfile.open(tarFileName, mode='w') as tf:
@@ -61,14 +61,14 @@ def createTmpFiles(replaceFileNames, opts2):
 	for file in replaceFileNames:
 		dstPathFileName = os.path.join(opts2["-t"], file)
 		srcPathFileName = os.path.join(opts2["-s"], file)
-		tmpPathFileName = "".join([dstPathFileName, "_test02_temp"])
+		tmpPathFileName = "".join([dstPathFileName, "_existdb-config_temp"])
 		shutil.copyfile(srcPathFileName, tmpPathFileName)
 
 def switchToNewFiles(replaceFileNames, opts2):
 	for file in replaceFileNames:
 		dstPathFileName = os.path.join(opts2["-t"], file)
 		srcPathFileName = os.path.join(opts2["-s"], file)
-		tmpPathFileName = "".join([dstPathFileName, "_test02_temp"])
+		tmpPathFileName = "".join([dstPathFileName, "_existdb-config_temp"])
 		shutil.move(tmpPathFileName, dstPathFileName)
 
 if __name__=="__main__":
