@@ -35,6 +35,7 @@
    <!--
         RpcServlet provides XML-RPC access.
     -->
+   <!--
    <servlet>
       <servlet-name>org.exist.xmlrpc.RpcServlet</servlet-name>
       <servlet-class>org.exist.xmlrpc.RpcServlet</servlet-class>
@@ -43,6 +44,7 @@
          <param-value>true</param-value>
       </init-param>
       <init-param>
+            -->
             <!--
             When no user is specified in an XML-RPC request,
             the guest user account will be used.
@@ -50,10 +52,12 @@
             When useDefaultUser is set to false, the guest user
             is prohibited from accessing the XML-RPC API.
             -->
+         <!--
          <param-name>useDefaultUser</param-name>
          <param-value>true</param-value>
       </init-param>
       <init-param>
+            -->
             <!--
             The Apache XML-RPC servlet does not set a charset
             in the HTTP response, so the default HTTP charset
@@ -63,10 +67,12 @@
             You may choose any charset supported by
             java.nio.charset.Charset
             -->
+         <!--
          <param-name>charset</param-name>
          <param-value>UTF-8</param-value>
       </init-param>
    </servlet>
+   -->
    <!--
         EXistServlet is a helper servlet that is used to ensure that
         eXist is running in the background.
@@ -108,7 +114,7 @@
 		-->
       <init-param>
          <param-name>hidden</param-name>
-         <param-value>false</param-value>
+         <param-value>true</param-value>
       </init-param>
       <!--
             Determines who is allowed to submit XQuery to the servlet
@@ -130,7 +136,7 @@
         -->
       <init-param>
          <param-name>xquery-submission</param-name>
-         <param-value>enabled</param-value>
+         <param-value>authenticated</param-value>
       </init-param>
       <!--
             Determines who is allowed to submit XUpdate to the servlet
@@ -151,7 +157,7 @@
         -->
       <init-param>
          <param-name>xupdate-submission</param-name>
-         <param-value>enabled</param-value>
+         <param-value>disabled</param-value>
       </init-param>
       <load-on-startup>2</load-on-startup>
    </servlet>
@@ -166,6 +172,7 @@
    <!--
             Milton provides the WebDAV interface
    -->
+   <!--
    <servlet>
       <servlet-name>milton</servlet-name>
       <servlet-class>org.exist.webdav.MiltonWebDAVServlet</servlet-class>
@@ -173,6 +180,7 @@
          <param-name>resource.factory.class</param-name>
          <param-value>org.exist.webdav.ExistResourceFactory</param-value>
       </init-param>
+      -->
       <!--
                 Some WebDAV clients send a "Expect: 100-continue" header before 
                 uploading body data. Servlet containers (like tomcat and jetty) handle 
@@ -193,7 +201,9 @@
          <param-value>com.bradmcevoy.http.DebugFilter</param-value>
       </init-param>
       -->
+    <!--
     </servlet>
+   -->
    <!--
         XQueryServlet generates HTML from an XQuery file.
     -->
